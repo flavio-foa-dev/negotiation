@@ -1,17 +1,17 @@
 {
-  "dependencies": {
-    "next": "^13.4.7",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
-  },
+  "name": "alurabank",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "export": "next export",
-    "lint": "next lint"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "lite-server --baseDir=dist",
+    "start": "concurrently \"npm run watch\" \"npm run server\""
   },
+  "author": "",
+  "license": "ISC",
   "devDependencies": {
-    "@types/react": "^18.2.13"
+    "concurrently": "^6.0.0",
+    "lite-server": "^2.6.1"
   }
 }
