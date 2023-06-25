@@ -1,4 +1,6 @@
-export class Negationcontroller {
+import { Negotiation } from '../models/negociacao.js';
+
+export class Negotiationcontroller {
   private inputData;
   private inputQuantidade;
   private inputValor;
@@ -10,8 +12,11 @@ export class Negationcontroller {
   }
 
   adiciona() {
-    console.log('adiciona', this.inputData.value);
-    console.log('adiciona', this.inputQuantidade.value);
-    console.log('adiciona', this.inputValor.value);
+    const negotiation = new Negotiation(
+      this.inputData.value,
+      this.inputQuantidade.value,
+      this.inputValor.value
+    );
+    console.log(negotiation, 'nova negociacao criada');
   }
 }
