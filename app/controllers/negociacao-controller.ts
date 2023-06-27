@@ -1,20 +1,33 @@
 import { Negotiation } from '../models/negociacao.js';
+import { Negotiations } from '../models/negociacoes.js';
+import { NegotiationsView } from '../views/negociacoesViews.js';
 
 export class Negotiationcontroller {
   private inputData: HTMLInputElement;
   private inputQuantidade: HTMLInputElement;
   private inputValor: HTMLInputElement;
 
+  private negociations: Negotiations = new Negotiations();
+  private negotiationView = new NegotiationsView('#negotiation-view');
+
   constructor() {
     this.inputData = document.querySelector('#data');
     this.inputQuantidade = document.querySelector('#quantidade');
     this.inputValor = document.querySelector('#valor');
+
+    this.negotiationView.update(this.negociations);
   }
 
   adiciona(): void {
     const negotiation =  this.createNegotiation();
-    console.log(negotiation, 'nova negociacao criada');
+    this.negociations.adiciona(negotiation);
+    //this.negociations.list().pop();
+
+    console.log('Lista de negociacoes C',this.negociations.list());
     this.cleanForm();
+
+    this.negotiationView.update(this.negociations);
+
   }
 
   createNegotiation(): Negotiation {
