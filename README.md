@@ -31,3 +31,16 @@
 - Classes com tipo genérico
 - Classes abstratas
 - O modificador protected
+
+- Visibilidade de métodos
+- Validando negociações em dias úteis
+- Vantagens do uso de enums
+- Cuidados com enums com valor por(default)
+
+- Método estáticos
+- Parâmetros opcionais
+
+Remoção de comentários do código compilado
+Ativação do strictNullChecks
+Como suprimir erros, quando fizer sentido, resultantes do strictNullChecks
+Benefícios do strictNullChecks no controle do fluxo da sua aplicação

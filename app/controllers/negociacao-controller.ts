@@ -1,3 +1,4 @@
+import { DayWeek } from '../enums/day-week.js';
 import { Negotiation } from '../models/negociacao.js';
 import { Negotiations } from '../models/negociacoes.js';
 import { MensageView } from '../views/mensagem-view.js';
@@ -12,13 +13,10 @@ export class Negotiationcontroller {
   private negotiationView = new NegotiationsView('#negotiation-view');
   private messageView = new MensageView('#mensagem-view');
 
-  private readonly SABADO = 6 ;
-  private readonly DOMINGO  = 0;
-
   constructor() {
-    this.inputData = document.querySelector('#data');
-    this.inputQuantidade = document.querySelector('#quantidade');
-    this.inputValor = document.querySelector('#valor');
+    this.inputData = <HTMLInputElement> document.querySelector('#data');
+    this.inputQuantidade = document.querySelector('#quantidade') as HTMLInputElement;
+    this.inputValor = document.querySelector('#valor') as HTMLInputElement;
 
     this.negotiationView.update(this.negociations);
 
@@ -39,8 +37,8 @@ export class Negotiationcontroller {
   }
 
   private businessDay(date: Date): boolean {
-    return date.getDay() < this.SABADO
-      && date.getDay() > this.DOMINGO;
+    return date.getDay() < DayWeek.SATURDAY
+      && date.getDay() > DayWeek.MONDAY;
   }
 
   private createNegotiation(): Negotiation {
