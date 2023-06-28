@@ -12,6 +12,9 @@ export class Negotiationcontroller {
   private negotiationView = new NegotiationsView('#negotiation-view');
   private messageView = new MensageView('#mensagem-view');
 
+  private readonly SABADO = 6 ;
+  private readonly DOMINGO  = 0;
+
   constructor() {
     this.inputData = document.querySelector('#data');
     this.inputQuantidade = document.querySelector('#quantidade');
@@ -23,12 +26,21 @@ export class Negotiationcontroller {
 
   public adiciona(): void {
     const negotiation =  this.createNegotiation();
+
+    if (!this.businessDay(negotiation.data)) {
+      this.messageView.update('Apenas dias uteis', 'danger');
+      return;
+    }
     this.negociations.adiciona(negotiation);
     //this.negociations.list().pop();
     this.updateAllViews();
     console.log('Lista de negociacoes C',this.negociations.list());
-
     this.cleanForm();
+  }
+
+  private businessDay(date: Date): boolean {
+    return date.getDay() < this.SABADO
+      && date.getDay() > this.DOMINGO;
   }
 
   private createNegotiation(): Negotiation {
@@ -47,7 +59,7 @@ export class Negotiationcontroller {
   }
 
   private updateAllViews(): void {
-    this.negotiationView.update(this.negociations);
-    this.messageView.update('Negotiation added with success. DONE');
+    this.negotiationView.update(this.negociations, 'success');
+    this.messageView.update('Negotiation added with success. DONE', 'success');
   }
 }
