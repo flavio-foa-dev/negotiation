@@ -1,3 +1,4 @@
+import { tempExecution } from '../decorators/tempExecution.js';
 import { DayWeek } from '../enums/day-week.js';
 import { Negotiation } from '../models/negociacao.js';
 import { Negotiations } from '../models/negociacoes.js';
@@ -21,7 +22,7 @@ export class Negotiationcontroller {
     this.negotiationView.update(this.negociations);
 
   }
-
+  @tempExecution()
   public adiciona(): void {
     const negotiation =  this.createNegotiation();
 

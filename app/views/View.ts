@@ -1,3 +1,5 @@
+import { tempExecution } from '../decorators/tempExecution.js';
+
 export abstract class View<T> {
 
   protected element: HTMLElement;
@@ -13,14 +15,17 @@ export abstract class View<T> {
 
   protected abstract template(model: T, propsClass?:string): string
 
+  @tempExecution()
   update(model: T, propsClass?:string): void {
-    const tempStart = performance.now();
+
     const template = this.template(model, propsClass);
     this.element.innerHTML = template;
-    const tempEnd = performance.now();
 
-    console.log(`Tempod de execucao update ${(tempEnd - tempStart)/100} secundos`);
+  }
 
-
+  @tempExecution()
+  public Wook() {
+    console.log('Wook');
+    return 'oioi';
   }
 }
