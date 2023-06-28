@@ -2,9 +2,9 @@ import { View } from './View.js';
 
 export class MensageView extends View<string> {
 
-  protected template(model: string): string {
+  protected template(model: string, propsClass: string) {
     return`
-      <p class="alert alert-info">${model}</p>
+      <p class="alert alert-${propsClass}">${model}</p>
     `;
   }
 }
