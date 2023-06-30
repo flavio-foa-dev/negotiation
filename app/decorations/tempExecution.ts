@@ -1,6 +1,6 @@
 // desta forma faco uma funcao que return funcao, recebe parametros
 
-export function TempExecution(secnds = false): (target: unknown, propertyKey: string, descriptor: PropertyDescriptor) => PropertyDescriptor {
+export function TempExecution(secnds = false) {
   return function (
     target:unknown,
     propertyKey:string,

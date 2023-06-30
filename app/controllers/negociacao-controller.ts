@@ -1,3 +1,4 @@
+import { GetElementOfDoom } from '../decorations/getElementOfDoom.js';
 import { TempExecution } from '../decorations/tempExecution.js';
 import { DayWeek } from '../enums/day-week.js';
 import { Negotiation } from '../models/negociacao.js';
@@ -6,6 +7,7 @@ import { MensageView } from '../views/mensagem-view.js';
 import { NegotiationsView } from '../views/negociacoesViews.js';
 
 export class Negotiationcontroller {
+  @GetElementOfDoom('#data')
   private inputData: HTMLInputElement;
   private inputQuantidade: HTMLInputElement;
   private inputValor: HTMLInputElement;
@@ -15,7 +17,7 @@ export class Negotiationcontroller {
   private messageView = new MensageView('#mensagem-view');
 
   constructor() {
-    this.inputData = <HTMLInputElement> document.querySelector('#data');
+    //this.inputData = <HTMLInputElement> document.querySelector('#data');
     this.inputQuantidade = document.querySelector('#quantidade') as HTMLInputElement;
     this.inputValor = document.querySelector('#valor') as HTMLInputElement;
 
