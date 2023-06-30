@@ -39,6 +39,13 @@ export class Negotiationcontroller {
     this.cleanForm();
   }
 
+  importdata(): void {
+    fetch('http://localhost:8080/dados')
+      .then((res) => res.json())
+      .then(data => console.log(data))
+      .catch((err) => console.error('muito error',err.mensagem));
+  }
+
   private businessDay(date: Date): boolean {
     return date.getDay() < DayWeek.SATURDAY
       && date.getDay() > DayWeek.MONDAY;
