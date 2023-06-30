@@ -2,7 +2,7 @@ import { Negotiation } from './negociacao';
 
 export class Negotiations {
   private negotiations: Negotiation[] = [];
-  private negotiationss: Array<Negotiation> = [];
+  //private negotiationss: Array<Negotiation> = [];
 
   adiciona(negotiation: Negotiation ): void {
     this.negotiations.push(negotiation);
