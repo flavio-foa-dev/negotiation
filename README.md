@@ -47,3 +47,13 @@
 
 - Decorator de método
 - Logar tempo de execução com decorator
+
+- Decorator com parâmetro
+- Decorator simplificado
+- Ordem de execução dos decorators
+- Simplificação no design de decorators
+
+- Evitando código duplicado
+- Decorator de propriedade
+- uso de Object.defineProperty
+- Cache de decorators

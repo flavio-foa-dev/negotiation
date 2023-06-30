@@ -1,9 +1,11 @@
-import { Negotiation } from '../models/negociacao';
+import { Scape } from '../decorations/scape.js';
+import { Negotiation } from '../models/negociacao.js';
 import { Negotiations } from '../models/negociacoes.js';
 import { View } from './View.js';
 
 export class NegotiationsView extends View<Negotiations> {
 
+  @Scape()
   protected template(model: Negotiations): string {
     return `
       <table class="table  table-hover table-bordered">
