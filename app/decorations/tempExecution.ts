@@ -1,4 +1,6 @@
-export function tempExecution() {
+// desta forma faco uma funcao que return funcao, recebe parametros
+
+export function TempExecution(secnds = false): (target: unknown, propertyKey: string, descriptor: PropertyDescriptor) => PropertyDescriptor {
   return function (
     target:unknown,
     propertyKey:string,
@@ -12,7 +14,7 @@ export function tempExecution() {
       const returnMethod = methodCurrent.apply(this, args);
       //method
       const tempEnd = performance.now();
-      console.log(`O Method ${propertyKey}, Temp of ${ (tempEnd - tempStart)/1000} Secunds`);
+      console.log(`O Method 'E ${propertyKey}, Temp of ${ (tempEnd - tempStart)/1000} Secunds`);
       returnMethod;
 
 

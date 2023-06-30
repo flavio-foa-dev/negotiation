@@ -1,4 +1,5 @@
-import { tempExecution } from '../decorators/tempExecution.js';
+import { InspectoFunction } from '../decorations/inspect.js';
+import { TempExecution } from '../decorations/tempExecution.js';
 
 export abstract class View<T> {
 
@@ -15,7 +16,8 @@ export abstract class View<T> {
 
   protected abstract template(model: T, propsClass?:string): string
 
-  @tempExecution()
+  @TempExecution()
+  @InspectoFunction
   update(model: T, propsClass?:string): void {
 
     const template = this.template(model, propsClass);
@@ -23,9 +25,10 @@ export abstract class View<T> {
 
   }
 
-  @tempExecution()
-  public Wook() {
-    console.log('Wook');
-    return 'oioi';
-  }
+  // @InspectoFunction()
+  // @TempExecution()
+  // public Wook() {
+  //   console.log('Wook');
+  //   return 'oioi';
+  // }
 }
