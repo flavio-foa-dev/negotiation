@@ -42,8 +42,16 @@ export class Negotiationcontroller {
   importdata(): void {
     fetch('http://localhost:8080/dados')
       .then((res) => res.json())
-      .then(data => console.log(data))
-      .catch((err) => console.error('muito error',err.mensagem));
+      .then((data: any[]) => {
+        return data.map((item)=> {
+          return new Negotiation(new Date, item.vezes, item.montante);
+        });
+      }).then(neg => {
+        for (const value of neg) {
+          this.negociations.adiciona(value);
+        }
+        this.updateAllViews();
+      });
   }
 
   private businessDay(date: Date): boolean {
