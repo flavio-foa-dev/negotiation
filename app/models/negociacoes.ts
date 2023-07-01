@@ -1,17 +1,23 @@
-import { Negotiation } from './negociacao';
+import { Printt } from '../utils/print.js';
+import { Negotiation } from './negociacao.js';
 
-export class Negotiations {
+export class Negotiations implements Printt {
+
   private negotiations: Negotiation[] = [];
   //private negotiationss: Array<Negotiation> = [];
 
-  adiciona(negotiation: Negotiation ): void {
+  public adiciona(negotiation: Negotiation ): void {
     this.negotiations.push(negotiation);
 
     console.log(`Negotiations M: ${this.negotiations.length}`);
   }
 
-  list(): ReadonlyArray<Negotiation> {
+  public list(): ReadonlyArray<Negotiation> {
     return this.negotiations;
+  }
+
+  public printNegotiation(): string {
+    return JSON.stringify(this.negotiations, undefined, 2);
   }
 
 }
