@@ -12,3 +12,15 @@ if (form) {
 } else {
   throw new Error('Form not found');
 }
+
+
+const btnImport = document.querySelector('#botao-importa');
+if( btnImport) {
+  btnImport.addEventListener('click', ()=> {
+    controler.importdata();
+  });
+
+
+}else {
+  throw new Error('select not found do event import');
+}

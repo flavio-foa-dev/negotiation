@@ -39,6 +39,21 @@ export class Negotiationcontroller {
     this.cleanForm();
   }
 
+  importdata(): void {
+    fetch('http://localhost:8080/dados')
+      .then((res) => res.json())
+      .then((data: any[]) => {
+        return data.map((item)=> {
+          return new Negotiation(new Date, item.vezes, item.montante);
+        });
+      }).then(neg => {
+        for (const value of neg) {
+          this.negociations.adiciona(value);
+        }
+        this.updateAllViews();
+      });
+  }
+
   private businessDay(date: Date): boolean {
     return date.getDay() < DayWeek.SATURDAY
       && date.getDay() > DayWeek.MONDAY;
