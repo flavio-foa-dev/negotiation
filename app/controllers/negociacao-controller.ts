@@ -3,6 +3,8 @@ import { TempExecution } from '../decorations/tempExecution.js';
 import { DayWeek } from '../enums/day-week.js';
 import { Negotiation } from '../models/negociacao.js';
 import { Negotiations } from '../models/negociacoes.js';
+import { NegotiationDayService } from '../services/getNegotiationDay.js';
+import { imprimir } from '../utils/imprimir.js';
 import { MensageView } from '../views/mensagem-view.js';
 import { NegotiationsView } from '../views/negociacoesViews.js';
 
@@ -15,6 +17,8 @@ export class Negotiationcontroller {
   private negociations: Negotiations = new Negotiations();
   private negotiationView = new NegotiationsView('#negotiation-view');
   private messageView = new MensageView('#mensagem-view');
+
+  private negotiationDayService = new NegotiationDayService();
 
   constructor() {
     //this.inputData = <HTMLInputElement> document.querySelector('#data');
@@ -34,24 +38,20 @@ export class Negotiationcontroller {
     }
     this.negociations.adiciona(negotiation);
     //this.negociations.list().pop();
+    imprimir(this.negociations, negotiation);
     this.updateAllViews();
-    console.log('Lista de negociacoes C',this.negociations.list());
+    //console.log('Lista de negociacoes C',this.negociations.list());
     this.cleanForm();
   }
 
   importdata(): void {
-    fetch('http://localhost:8080/dados')
-      .then((res) => res.json())
-      .then((data: any[]) => {
-        return data.map((item)=> {
-          return new Negotiation(new Date, item.vezes, item.montante);
-        });
-      }).then(neg => {
+    this.negotiationDayService.getNegotiation()
+      .then(neg => {
         for (const value of neg) {
           this.negociations.adiciona(value);
         }
         this.updateAllViews();
-      });
+      }).catch(err => new Error(err.message));
   }
 
   private businessDay(date: Date): boolean {
